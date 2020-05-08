@@ -1,1 +1,62 @@
+This Guide show how to install and set up a single node hadoop
+
+1. Before install Hadoop check if java is installed
+$ java -version
+
+2. from user directory, download, upzip, rename the directory and delete zipfile
+$ wget http://mirrors.gigenet.com/apache/hadoop/common/hadoop-2.9.2/hadoop-2.9.2.tar.gz
+$ tar -xzf hadoop-2.9.2.tar.gz
+$ mv hadoop-2.9.2 hadoop
+$ rm -rf hadoop-2.9.2.tar.gz
+
+3. Configure JAVA_HOME
+in hadoop/etc/hadoop in file hadoop-env.sh,
+change JAVA_HOME as followings
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.191.b12-1.el7_6.x86_64/jre
+
+4. Configure Core Hadoop 
+in file /hadoop/etc/hadoop/core-site.xml
+change 
+<configuration>
+</configuration>
+to 
+<configuration>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>hdfs://localhost:9000</value>
+  </property>
+</configuration>
+
+5. Configure HDFS
+in file /hadoop/etc/hadoop/hdfs-site.xml 
+change properties as 
+<configuration>
+  <property>
+    <name>dfs.replication</name>
+    <value>1</value>
+  </property>
+</configuration>
+
+6.Set up Passwordless SSH Access to localhost
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys
+ssh localhost
+exit
+
+7.Format the namenode and verify
+in hadoop directory, format 
+bin/hdfs namenode -format
+
+start hdfs use
+sbin/start-dfs.sh
+
+start yarn use
+sbin/start-yarn.sh
+
+8.
+Default port number is 
+http://localhost:8088/
+
+
 
