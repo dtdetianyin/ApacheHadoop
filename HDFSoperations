@@ -1,0 +1,11 @@
+1.List files
+~/hadoop$ bin/hadoop dfs -ls
+
+2. insert files in hdfs
+first create
+bin/hadoop dfs -mkdir /user/input 
+
+binhadoop dfs -put /home/file.txt /user/input 
+
+3. get file from hdfs
+bin/hadoop fs -get /user/output/ /home/hadoop_tp/ 
