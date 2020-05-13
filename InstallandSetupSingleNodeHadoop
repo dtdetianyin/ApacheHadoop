@@ -58,5 +58,5 @@ sbin/start-yarn.sh
 Default port number is 
 http://localhost:8088/
 
-
+bin/hadoop dfs -mkdir -p /user/hive/warehouse
 
